@@ -6,7 +6,7 @@ console.log('+'); //заглушка для будущих событий)
 let like = document.querySelectorAll('.elements__like');
 for (let i = 0; i < like.length; i++) {
 like[i].addEventListener('click', function() {
-  like[i].classList.toggle('elements__like_active');
+  like[i].classList.toggle('elements__like_state_active');
   console.log('♥'); //для будущих событий)
 });
 }
