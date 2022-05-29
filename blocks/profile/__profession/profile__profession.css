@@ -19,7 +19,6 @@
   .profile__profession {
     max-width: var(--main-width);
     text-overflow: unset;
-    text-overflow: unset;
     white-space: unset;
     overflow: visible;
     text-align: center;

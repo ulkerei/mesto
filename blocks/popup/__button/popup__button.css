@@ -20,7 +20,7 @@
   .popup__button {
     margin-top: calc(48px - (637px - 100vw)/200);
     height: calc(50px - (637px - 100vw)/150);
-    font-size: calc(18px - (637px - 100vw)1/150);
+    font-size: calc(18px - (637px - 100vw)/150);
   }
 }
 
