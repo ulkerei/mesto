@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Место</title>
+  <link rel="stylesheet" href="pages/index.css">
+  <link rel="shortcut icon" href="images/Vikinghelmet.ico">
+</head>
+
+<body class="body">
+  <header class="header">
+    <img class="header__logo" src="images/Mesto.svg">
+    <div class="header__line"></div>
+  </header>
+
+  <main class="main">
+    <section class="profile">
+      <div class="profile__avatar"></div>
+      <div class="profile__info">
+        <div class="profile__first-line">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__button profile__button_type_edit"><img class="profile__edit-image" src="images/Pen.svg"></button>
+        </div>
+        <p class="profile__job">Исследователь океана</p>
+      </div>
+      <button class="profile__button profile__button_type_add"><img src="images/Plus.svg"></button>
+    </section>
+    <section class="elements">
+      <div class="elements__element">
+        <img src="images/pskov.jpg" class="elements__image" alt="Великая река и Пскова">
+        <div class="elements__subtitle">
+          <p class="elements__place">Псков</p>
+          <button type="button" class="elements__like"></button>
+        </div>
+      </div>
+
+      <div class="elements__element">
+        <img src="images/finlandgolf.jpg" class="elements__image" alt="Море">
+        <div class="elements__subtitle">
+          <p class="elements__place">Финский залив</p>
+          <button type="button" class="elements__like"></button>
+        </div>
+      </div>
+
+      <div class="elements__element">
+        <img src="images/ruskeala.jpg" class="elements__image" alt="Карьер">
+        <div class="elements__subtitle">
+          <p class="elements__place">Карелия</p>
+          <button type="button" class="elements__like"></button>
+        </div>
+      </div>
+
+      <div class="elements__element">
+        <img src="images/ladoga.jpg" class="elements__image" alt="Озеро">
+        <div class="elements__subtitle">
+          <p class="elements__place">Ладога</p>
+          <button type="button" class="elements__like"></button>
+        </div>
+      </div>
+
+      <div class="elements__element">
+        <img src="images/swamp.jpg" class="elements__image elements__like_active" alt="Моё болото">
+        <div class="elements__subtitle">
+          <p class="elements__place">Безымянное болото</p>
+          <button type="button" class="elements__like"></button>
+        </div>
+      </div>
+
+      <div class="elements__element">
+        <img src="images/dno.jpg" class="elements__image" alt="Дно">
+        <div class="elements__subtitle">
+          <p class="elements__place">Дно</p>
+          <button type="button" class="elements__like"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="popup">
+      <div class="popup__overlay"></div>
+      <form class="popup__container">
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <input type="text" id="name" class="popup__input popup__input_type_name" value="Жак-Ив Кусто">
+        <div class="popup__line"></div>
+        <input type="text" id="job" class="popup__input popup__input_type_job" value="Исследователь океана">
+        <div class="popup__line"></div>
+        <button type="submit" id="submit" class="popup__button">Сохранить</button>
+        <button type="button" id="close" class="popup__close"><img src="images/Close-icon.svg" class="popup__close-x" alt="Х"></button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2022 Юлка Торшенко</p>
+  </footer>
+  <script src="pages/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+.header {
+  box-sizing: border-box;
+  padding-top: 45px;
+  width: var(--main-width);
+  display: flex;
+  flex-direction: column;
+}

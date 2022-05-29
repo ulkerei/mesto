@@ -1,0 +1,13 @@
+.profile__button {
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 2px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.profile__button:hover {
+  border: 2px solid rgba(255, 255, 255, .6);
+  opacity: 60%;
+}
