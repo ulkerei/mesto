@@ -1,6 +1,6 @@
 let add = document.querySelector('.profile__button_type_add');
 add.addEventListener('click', function() {
-console.log('+'); //заглушка для будущих событий)
+console.log('+'); //для будущих событий)
 });
 
 let like = document.querySelectorAll('.elements__like');
