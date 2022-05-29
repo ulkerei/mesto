@@ -11,6 +11,5 @@
 ## Планы по доработке проекта
 Доработать в соответствии со следущими заданиями.
 
-
 **Сайт на GitHub Pages:**  
 https://ulkerei.github.io/mesto/index.html
