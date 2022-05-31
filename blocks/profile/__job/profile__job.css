@@ -1,4 +1,4 @@
-.profile__profession {
+.profile__job {
   margin: 16px 0 0;
   padding: 0;
   max-width: calc(var(--main-width) - 336px);
@@ -10,13 +10,13 @@
 }
 
 @media screen and (max-width: 937px) {
-  .profile__profession {
+  .profile__job {
     font-size: calc(18px - (937px - 100vw)/150);
   }
 }
 
 @media screen and (max-width: 637px) {
-  .profile__profession {
+  .profile__job {
     max-width: var(--main-width);
     text-overflow: unset;
     white-space: unset;
