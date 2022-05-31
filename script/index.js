@@ -7,9 +7,6 @@ let formElement = document.querySelector('.popup__form');
 let nameInput = document.querySelector('.popup__input_type_name');
 let jobInput = document.querySelector('.popup__input_type_job');
 
-add.addEventListener('click', function() {
-});
-
 for (let i = 0; i < like.length; i++) {
 like[i].addEventListener('click', function() {
   like[i].classList.toggle('cards__like_state_active');
