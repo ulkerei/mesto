@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Учебный сайт о путешествиях по России">
+  <meta name="description" content="Учебный сайт о путешествиях">
   <meta name="keywords" content="Я-практикум, фотографии, путешествия">
   <title>Место</title>
   <link rel="stylesheet" href="pages/index.css">
@@ -12,7 +12,7 @@
 
 <body class="body">
   <header class="header">
-    <img class="header__logo" src="images/Mesto.svg" alt="Место - Россия">
+    <img class="header__logo" src="images/Mesto.svg" alt="Место">
   </header>
 
   <main class="main">
@@ -20,75 +20,60 @@
       <div class="profile__avatar"></div>
       <div class="profile__info">
         <div class="profile__title">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name">Другое</h1>
           <button type="button" class="profile__button profile__button_type_edit"><img class="profile__edit-image" src="images/Pen.svg" alt="Редактировать"></button>
         </div>
-        <p class="profile__job">Исследователь океана</p>
+        <p class="profile__job">Исследует то, что вы не понимаете</p>
       </div>
       <button type="button" class="profile__button profile__button_type_add"><img src="images/Plus.svg" alt="Добавить"></button>
     </section>
 
     <section class="cards">
-      <div class="cards__element">
-        <img src="images/pskov.jpg" class="cards__image" alt="Великая река и Пскова">
-        <div class="cards__subtitle">
-          <p class="cards__place">Псков</p>
-          <button type="button" class="cards__like"></button>
+      <template id="cards__element">
+        <div class="cards__element">
+          <button type="button" id="delete" class="cards__delete"><img src="images/delete.svg" class="card__delete-image" alt="Х"></button>
+          <img class="cards__image">
+          <div class="cards__subtitle">
+            <p class="cards__place"></p>
+            <button type="button" class="cards__like"></button>
+          </div>
         </div>
-      </div>
-
-      <div class="cards__element">
-        <img src="images/finlandgolf.jpg" class="cards__image" alt="Море">
-        <div class="cards__subtitle">
-          <p class="cards__place">Финский залив</p>
-          <button type="button" class="cards__like"></button>
-        </div>
-      </div>
-
-      <div class="cards__element">
-        <img src="images/ruskeala.jpg" class="cards__image" alt="Карьер">
-        <div class="cards__subtitle">
-          <p class="cards__place">Карелия</p>
-          <button type="button" class="cards__like"></button>
-        </div>
-      </div>
-
-      <div class="cards__element">
-        <img src="images/ladoga.jpg" class="cards__image" alt="Озеро">
-        <div class="cards__subtitle">
-          <p class="cards__place">Ладога</p>
-          <button type="button" class="cards__like"></button>
-        </div>
-      </div>
-
-      <div class="cards__element">
-        <img src="images/swamp.jpg" class="cards__image" alt="Моё болото">
-        <div class="cards__subtitle">
-          <p class="cards__place">Безымянное болото</p>
-          <button type="button" class="cards__like"></button>
-        </div>
-      </div>
-
-      <div class="cards__element">
-        <img src="images/dno.jpg" class="cards__image" alt="Дно">
-        <div class="cards__subtitle">
-          <p class="cards__place">Дно</p>
-          <button type="button" class="cards__like"></button>
-        </div>
-      </div>
+      </template>
     </section>
 
-    <section class="popup">
+    <section class="popup popup_type_edit">
       <div class="popup__overlay"></div>
       <form name="profile-edit" class="popup__form">
         <h2 class="popup__heading">Редактировать профиль</h2>
-        <input type="text" id="name" class="popup__input popup__input_type_name" value="Жак-Ив Кусто">
-        <input type="text" id="job" class="popup__input popup__input_type_job" value="Исследователь океана">
+        <input type="text" id="name" class="popup__input popup__input_type_name" value="Другое">
+        <input type="text" id="job" class="popup__input popup__input_type_job" value="Исследует то, что вы не понимаете">
         <button type="submit" id="submit" class="popup__button">Сохранить</button>
         <button type="button" id="close" class="popup__close"><img src="images/Close-icon.svg" class="popup__close-x" alt="Х"></button>
       </form>
     </section>
   </main>
+
+  <section class="popup popup_type_add">
+    <div class="popup__overlay"></div>
+    <form name="add-image" class="popup__form">
+      <h2 class="popup__heading">Новое место</h2>
+      <input type="text" id="place" class="popup__input popup__input_type_place" value="Название">
+      <input type="text" id="link" class="popup__input popup__input_type_link" value="Ссылка на картинку">
+      <button type="submit" id="submit" class="popup__button">Создать</button>
+      <button type="button" id="close" class="popup__close"><img src="images/Close-icon.svg" class="popup__close-x" alt="Х"></button>
+    </form>
+  </section>
+</main>
+
+<section class="popup popup_type_viewer">
+  <div class="popup__overlay"></div>
+  <div class="popup__viewer">
+    <img class="popup__view-image">
+    <p class="popup__view-location"></p>
+    <button type="button" id="close" class="popup__close"><img src="images/Close-icon.svg" class="popup__close-x" alt="Х"></button>
+  </div>
+</section>
+</main>
 
   <footer class="footer">
     <p class="footer__copyright">&copy;2022 Юлка Торшенко</p>

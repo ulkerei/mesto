@@ -14,7 +14,6 @@
 
 @media screen and (max-width: 637px) {
   .popup__form {
-    padding: 34px 36px 37px;
     padding-top: calc(34px - (637px - 100vw)*3/200);
     padding-left: calc(36px - (637px - 100vw)*7/300);
     padding-right: calc(36px - (637px - 100vw)*7/300);
@@ -25,16 +24,12 @@
 @media screen and (max-width: 557px) {
   .popup__form {
     width: calc(430px - (557px - 100vw)/1.5);
-    top: calc((100vh - 330px)/2);
-    left: calc((100vw - 17px - (430px - (557px - 100vw)/1.5))/2);
   }
 }
 
 @media screen and (max-width: 337px) {
   .popup__form {
     width: 282px;
-    top: calc((100vh - 330px)/2);
-    left: calc((100vw - 299px)/2);
     padding: 25px 22px;
   }
 }
