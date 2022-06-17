@@ -31,7 +31,7 @@
     <section class="cards">
       <template id="cards__element">
         <div class="cards__element">
-          <button type="button" id="delete" class="cards__delete"><img src="images/delete.svg" class="card__delete-image" alt="Х"></button>
+          <button type="button" id="delete" class="cards__delete"><img src="images/Delete.svg" class="card__delete-image" alt="Х"></button>
           <img class="cards__image">
           <div class="cards__subtitle">
             <p class="cards__place"></p>
@@ -43,7 +43,7 @@
 
     <section class="popup popup_type_edit">
       <div class="popup__overlay"></div>
-      <form name="profile-edit" class="popup__form">
+      <form name="profile-edit" class="popup__form popup__form_type_edit">
         <h2 class="popup__heading">Редактировать профиль</h2>
         <input type="text" id="name" class="popup__input popup__input_type_name" value="Другое">
         <input type="text" id="job" class="popup__input popup__input_type_job" value="Исследует то, что вы не понимаете">
@@ -54,10 +54,10 @@
 
     <section class="popup popup_type_add">
       <div class="popup__overlay"></div>
-      <form name="add-image" class="popup__form">
+      <form name="add-image" class="popup__form popup__form_type_add">
         <h2 class="popup__heading">Новое место</h2>
-        <input type="text" id="place" class="popup__input popup__input_type_place" value="Название">
-        <input type="text" id="link" class="popup__input popup__input_type_link" value="Ссылка на картинку">
+        <input type="text" id="place" class="popup__input popup__input_type_place" placeholder="Название" value="">
+        <input type="text" id="link" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" value="">
         <button type="submit" id="add-submit" class="popup__button">Создать</button>
         <button type="button" id="add-close" class="popup__close"><img src="images/Close-icon.svg" class="popup__close-x" alt="Х"></button>
       </form>
