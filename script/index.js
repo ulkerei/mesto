@@ -126,12 +126,18 @@ buttonAdd.addEventListener('click', function() {
 formEdit.addEventListener('submit', handleProfileFormSubmit);
 formAdd.addEventListener('submit', handleAddFormSubmit);
 
-/*Крестики*/
+/*Закрытие попапов*/
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
-     if (evt.target.classList.contains('popup__close-x')) {
-        closePopup(popup)
+     if (evt.target.classList.contains('popup__close-x') || evt.target.classList.contains('popup__overlay')) {
+        closePopup(popup);
       }
+  });
+
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+       closePopup(popup);
+    }
   });
 });
 

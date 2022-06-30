@@ -1,5 +1,5 @@
 .popup__button {
-  margin: 48px 0 0;
+  margin: 13px 0 0;
   padding: 0;
   border: none;
   border-radius: 2px;
@@ -17,6 +17,13 @@
   background-color: rgba(0, 0, 0, .8);
 }
 
+.popup__button:disabled {
+  background-color: #fff;
+  color: #c4c4c4;
+  border: 1px solid #c4c4c4;
+  border-radius: 2px;
+}
+
 @media screen and (max-width: 637px) {
   .popup__button {
     margin-top: calc(48px - (637px - 100vw)/200);
@@ -32,3 +39,4 @@
     font-size: 14px;
   }
 }
+

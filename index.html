@@ -45,9 +45,11 @@
       <div class="popup__overlay"></div>
       <form name="profile-edit" class="popup__form popup__form_type_edit">
         <h2 class="popup__heading">Редактировать профиль</h2>
-        <input type="text" id="name" class="popup__input popup__input_type_name" value="Другое">
-        <input type="text" id="job" class="popup__input popup__input_type_job" value="Исследует то, что вы не понимаете">
-        <button type="submit" id="edit-submit" class="popup__button">Сохранить</button>
+        <input type="text" minlength="2" maxlength="40" required id="name" class="popup__input popup__input_type_name" value="Другое">
+        <p class="popup__input-error popup__input-error_type_name"></p>
+        <input type="text" minlength="2" maxlength="200" required id="job" class="popup__input popup__input_type_job" value="Исследует то, что вы не понимаете">
+        <p class="popup__input-error popup__input-error_type_job"></p>
+        <button type="submit" id="edit-submit" class="popup__button popup__button_disabled">Сохранить</button>
         <button type="button" id="edit-close" class="popup__close"><img src="images/Close-icon.svg" class="popup__close-x" alt="Х"></button>
       </form>
     </section>
@@ -56,8 +58,10 @@
       <div class="popup__overlay"></div>
       <form name="add-image" class="popup__form popup__form_type_add">
         <h2 class="popup__heading">Новое место</h2>
-        <input type="text" id="place" class="popup__input popup__input_type_place" placeholder="Название" value="">
-        <input type="text" id="link" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" value="">
+        <input type="text" minlength="2" maxlength="30" required id="place" class="popup__input popup__input_type_place" placeholder="Название" value="">
+        <p class="popup__input-error popup__input-error_type_place"></p>
+        <input type="url" required id="link" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" value="">
+        <p class="popup__input-error popup__input-error_type_link"></p>
         <button type="submit" id="add-submit" class="popup__button">Создать</button>
         <button type="button" id="add-close" class="popup__close"><img src="images/Close-icon.svg" class="popup__close-x" alt="Х"></button>
       </form>
@@ -66,7 +70,7 @@
     <section class="popup popup_type_viewer">
       <div class="popup__overlay"></div>
       <div class="popup__viewer">
-        <img class="popup__view-image">
+        <img class="popup__view-image" src="#" alt="">
         <p class="popup__view-location"></p>
         <button type="button" id="view-close" class="popup__close"><img src="images/Close-icon.svg" class="popup__close-x" alt="Х"></button>
       </div>
@@ -77,5 +81,6 @@
     <p class="footer__copyright">&copy;2022 Юлка Торшенко</p>
   </footer>
   <script src="script/index.js"></script>
+  <script src="script/validate.js"></script>
 </body>
 </html>
