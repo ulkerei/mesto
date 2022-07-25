@@ -40,7 +40,6 @@ _hasInvalidInput (inputList) {
   }); 
 }
 
-
 /*состояние кнопки*/
 _toggleButtonState () {
   if (this._hasInvalidInput(this._inputList)) {
@@ -57,6 +56,20 @@ _setEventListeners (inputList) {
       this._checkValidity (inputElement);
       this._toggleButtonState ();
     });
+  });
+}
+
+/*деактивация кнопки*/
+inactivateSubmitButton() {
+  const submitButton = this._element.querySelector('.popup__button');
+  submitButton.setAttribute('disabled', true);
+}
+
+/*Очистка*/
+resetValidation() {
+  this._toggleButtonState();
+  this._inputList.forEach((inputElement) => {
+    this._hideInputError(inputElement)
   });
 }
 

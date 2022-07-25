@@ -37,8 +37,8 @@ export default class Card {
   }
 
   createCard () {
-    this._element.querySelector('.cards__image').src = this._link;
-    this._element.querySelector('.cards__image').alt = this._place;
+    this._view.src = this._link;
+    this._view.alt = this._place;
     this._element.querySelector('.cards__place').textContent = this._place;
     this._setEventListeners();
     return this._element;
