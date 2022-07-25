@@ -26,8 +26,6 @@ const jobInput = document.querySelector('.popup__input_type_job');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 
-
-
 const placeInput = document.querySelector('.popup__input_type_place');
 const linkInput = document.querySelector('.popup__input_type_link');
 
@@ -59,6 +57,9 @@ const initialCards = [
     link: 'https://images.unsplash.com/photo-1562869929-bda0650edb1f'
   }
 ];
+
+const addFormValidator = new FormValidator(selectorsList, formAdd);
+const editFormValidator = new FormValidator(selectorsList, formEdit);
 
 /*Открыть/закрыть попап*/
 export function openPopup(popup) {
@@ -93,8 +94,7 @@ function handleAddFormSubmit (evt) {
   const linkValue = linkInput.value;
   cardsContainer.prepend(generateCard(placeValue, linkValue, cardTemplate));
   closePopup(popupAdd);
-  const resetButton = new FormValidator(selectorsList, popupAdd);
-  resetButton.inactivateSubmitButton();
+  addFormValidator.inactivateSubmitButton();
   formAdd.reset();
 }
 
@@ -131,14 +131,9 @@ popups.forEach((popup) => {
 });
 
 /*Валидация отправки формы*/
-const formList = Array.from(document.querySelectorAll(selectorsList.formSelector));
-  formList.forEach(formElement => {
-    formElement.addEventListener('submit', function (evt) {
-      evt.preventDefault();
-    });
-    const checkForm = new FormValidator(selectorsList, formElement);
-    checkForm.enableValidation();
-  });
+  editFormValidator.enableValidation();
+  addFormValidator.enableValidation();
+
 
 /*Начальные карточки*/
 for (let i = 0; i < initialCards.length; i++) {
