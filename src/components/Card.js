@@ -1,18 +1,13 @@
-import {openPopup} from './index.js';
-
-const viewer = document.querySelector('.popup_type_viewer');
-const viewImage = viewer.querySelector('.popup__view-image');
-const viewLocation = viewer.querySelector('.popup__view-location');
-
 /*Карточки*/
 export default class Card {
-  constructor(place, link, template) {
+  constructor(place, link, template, handelView) {
     this._place = place;
     this._link = link;
     this._element = template.querySelector('.cards__element').cloneNode(true);
     this._like = this._element.querySelector('.cards__like');
     this._del = this._element.querySelector('.cards__delete');
     this._view = this._element.querySelector('.cards__image');
+    this._handelView = handelView;
   }
 
   _likeCard() {
@@ -23,15 +18,8 @@ export default class Card {
     this._element.remove();
   }
 
-  _viewCard() {
-    viewImage.src = this._link;
-    viewImage.alt = this._place;
-    viewLocation.textContent = this._place;
-    openPopup(viewer);
-  }
-
   _setEventListeners() {
-    this._view.addEventListener('click', () => this._viewCard(this._place, this._link));
+    this._view.addEventListener('click', () => this._handelView(this._place, this._link));
     this._like.addEventListener('click', () => this._likeCard());
     this._del.addEventListener('click', () => this._deleteCard());
   }
