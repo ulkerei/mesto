@@ -2,7 +2,7 @@ export default class Section {
   constructor ({items,renderer}, targetSelector) {
     this._items = items;
     this._renderer = renderer;
-    this._targetSelector = targetSelector;
+    this._target = document.querySelector(targetSelector);
   }
 
   renderItems () {
@@ -13,9 +13,9 @@ export default class Section {
 
   placeItem (element, isInintial) {
     if (isInintial) {
-      this._targetSelector.append(element);
+      this._target.append(element);
     } else {
-      this._targetSelector.prepend(element);
+      this._target.prepend(element);
     }
   }
 }

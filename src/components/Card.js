@@ -4,7 +4,7 @@ export default class Card {
     this._place = place;
     this._link = link;
     this._selector = templateSelector;
-    this._template = document.querySelector('#cards__element').content;
+    this._template = document.querySelector(templateSelector).content;
     this._element = this._template.querySelector('.cards__element').cloneNode(true);
     this._like = this._element.querySelector('.cards__like');
     this._del = this._element.querySelector('.cards__delete');

@@ -20,7 +20,7 @@ const buttonEdit = document.querySelector('.profile__button_type_edit');
 const popupAddSelector = '.popup_type_add';
 const popupEditSelector = '.popup_type_edit';
 const popupViewSelector = '.popup_type_viewer';
-const cardsContainer = document.querySelector('.cards');
+const cardsContainer = '.cards';
 const cardTemplateSelector = '#cards__element';
 
 const formAdd = document.querySelector('.popup__form_type_add');
