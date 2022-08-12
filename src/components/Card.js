@@ -1,9 +1,11 @@
 /*Карточки*/
 export default class Card {
-  constructor(place, link, template, handelView) {
+  constructor(place, link, templateSelector, handelView) {
     this._place = place;
     this._link = link;
-    this._element = template.querySelector('.cards__element').cloneNode(true);
+    this._selector = templateSelector;
+    this._template = document.querySelector('#cards__element').content;
+    this._element = this._template.querySelector('.cards__element').cloneNode(true);
     this._like = this._element.querySelector('.cards__like');
     this._del = this._element.querySelector('.cards__delete');
     this._view = this._element.querySelector('.cards__image');
@@ -16,6 +18,7 @@ export default class Card {
 
   _deleteCard() {
     this._element.remove();
+    this._element = null;
   }
 
   _setEventListeners() {

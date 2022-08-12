@@ -19,8 +19,6 @@
 @media screen and (max-width: 637px) {
   .profile__name {
     max-width: calc(var(--main-width) - 70px);
-    white-space: unset;
-    overflow: unset;
     text-align: center;
   }
 }

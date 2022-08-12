@@ -18,9 +18,6 @@
 @media screen and (max-width: 637px) {
   .profile__job {
     max-width: var(--main-width);
-    text-overflow: unset;
-    white-space: unset;
-    overflow: visible;
     text-align: center;
     margin-top: 14px;
   }
