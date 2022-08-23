@@ -16,13 +16,17 @@
 
   <main class="main">
     <section class="profile">
-      <div class="profile__avatar"></div>
+      <div class="profile__avatar">
+        <div class="profile__avatar-overlay">
+          <button type="button" class="profile__button profile__button_type_edit-avatar"><img class="profile__edit-avatar-image" src="<%=require('./images/Pen.svg')%>" alt="Редактировать"></button>
+        </div>
+      </div>
       <div class="profile__info">
         <div class="profile__title">
-          <h1 class="profile__name">Другое</h1>
+          <h1 class="profile__name"></h1>
           <button type="button" class="profile__button profile__button_type_edit"><img class="profile__edit-image" src="<%=require('./images/Pen.svg')%>" alt="Редактировать"></button>
         </div>
-        <p class="profile__job">Исследует то, что вы не понимаете</p>
+        <p class="profile__job"></p>
       </div>
       <button type="button" class="profile__button profile__button_type_add"><img src="<%=require('./images/Plus.svg')%>" alt="Добавить"></button>
     </section>
@@ -34,7 +38,10 @@
           <img class="cards__image">
           <div class="cards__subtitle">
             <p class="cards__place"></p>
-            <button type="button" class="cards__like"></button>
+            <div>
+              <button type="button" class="cards__like"></button>
+              <p class="cards__likes-counter">0</p>
+            </div>
           </div>
         </div>
       </template>
@@ -63,6 +70,26 @@
         <p class="popup__input-error popup__input-error_type_link"></p>
         <button type="submit" id="add-submit" class="popup__button">Создать</button>
         <button type="button" id="add-close" class="popup__close"><img src="<%=require('./images/Close-icon.svg')%>" class="popup__close-x" alt="Х"></button>
+      </form>
+    </section>
+
+    <section class="popup popup_type_avatar">
+      <div class="popup__overlay"></div>
+      <form name="avatar-change" class="popup__form popup__form_type_avatar">
+        <h2 class="popup__heading">Обновить аватар</h2>
+        <input type="url" required id="avatar" name="avatar" class="popup__input popup__input_type_avatar" placeholder="Ссылка на изображение" value="">
+        <p class="popup__input-error popup__input-error_type_avatar"></p>
+        <button type="submit" id="avatar-submit" class="popup__button">Сохранить</button>
+        <button type="button" id="avatar-close" class="popup__close"><img src="<%=require('./images/Close-icon.svg')%>" class="popup__close-x" alt="Х"></button>
+      </form>
+    </section>
+
+    <section class="popup popup_type_confirm">
+      <div class="popup__overlay"></div>
+      <form name="confirmation" class="popup__form popup__form_type_confirm">
+        <h2 class="popup__heading">Вы уверены?</h2>
+        <button type="submit" id="confirm-submit" class="popup__button">Да</button>
+        <button type="button" id="confirm-close" class="popup__close"><img src="<%=require('./images/Close-icon.svg')%>" class="popup__close-x" alt="Х"></button>
       </form>
     </section>
 

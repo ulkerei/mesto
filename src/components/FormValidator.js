@@ -74,6 +74,7 @@ resetValidation() {
   });
 }
 
+/*Валидация*/
 enableValidation () {
   this._buttonElement = this._element.querySelector(this._submitButtonSelector);
   this._toggleButtonState ();
