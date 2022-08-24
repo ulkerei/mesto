@@ -22,7 +22,6 @@ export default class PopupWithForm extends Popup {
       evt.preventDefault();
       const values = this._getInputValues();
       this._handleFormSubmit(values);
-      this.closePopup();
     });
   }
 
@@ -35,7 +34,11 @@ export default class PopupWithForm extends Popup {
     if (loading) {
       this._button.textContent = 'Сохранение...';
     } else {
-    this._button.textContent = 'Сохранить';
+      if (this._popup.classList.contains('popup_type_add')) {
+        this._button.textContent = 'Создать';
+      } else {
+        this._button.textContent = 'Сохранить';
+      }
     }
   }
 }

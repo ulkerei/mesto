@@ -33,12 +33,13 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: values.name,
-        about: values.job
+        about: values.job,
+        avatar: values.avatar
       })
     })
     .then(res => this._check(res))
   }
-
+/*
   setAvatar(values) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
@@ -49,7 +50,7 @@ export default class Api {
     })
     .then(res => this._check(res))
   }
-
+*/
   postNewCard(values) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',

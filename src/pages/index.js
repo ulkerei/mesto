@@ -17,6 +17,8 @@ const selectorsList = {
   errorTypeTemplate: '.popup__input-error_type_'
 }
 
+const profileName = document.querySelector('.popup__input_type_name');
+const profileJob = document.querySelector('.popup__input_type_job');
 const buttonAdd = document.querySelector('.profile__button_type_add');
 const buttonEdit = document.querySelector('.profile__button_type_edit');
 const buttonAvatar = document.querySelector('.profile__button_type_edit-avatar');
@@ -28,6 +30,7 @@ const popupConfirmationSelector = '.popup_type_confirm';
 const cardsContainer = '.cards';
 const cardTemplateSelector = '#cards__element';
 
+
 const formAdd = document.querySelector('.popup__form_type_add');
 const formEdit = document.querySelector('.popup__form_type_edit');
 const formAvatar = document.querySelector('.popup__form_type_avatar');
@@ -37,6 +40,7 @@ const profileData = {
   job: '.profile__job',
   avatar: '.profile__avatar'
 }
+
 /*ЭКЗЕМПЛЯРЫ КЛАССОВ*/
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-48',
@@ -48,8 +52,8 @@ const api = new Api({
 
 const cards = new Section({
   renderer:(item) => {
-    let card = generateCard (item, cardTemplateSelector, () => handelView (item.name, item.link),() => openConfirm(item, card),() => handelLike(item, card));
-    cards.placeItem (card, true);
+    const cardInit = new Card (item, profile._id, cardTemplateSelector, () => handelView (item.name, item.link), openConfirm, handelLike);
+    cards.placeItem (cardInit.createCard(), true);
   }
 },cardsContainer);
 
@@ -65,8 +69,9 @@ const popupAddItem = new PopupWithForm(popupAddSelector, (values) => {
   popupAddItem.showLoading(true);
   api.postNewCard(values)
     .then((info) => {
-      let cardNew = generateCard(info, cardTemplateSelector, () => handelView (info.place, info.link), () => openConfirm(info, cardNew), () => handelLike(info, cardNew));
-      cards.placeItem(cardNew, false);
+      const cardNew = new Card(info, profile._id, cardTemplateSelector, () => handelView (info.place, info.link), openConfirm , handelLike);
+      cards.placeItem(cardNew.createCard(), false);
+      popupAddItem.closePopup();
     })
     .catch((err) => {
       console.log(err);
@@ -78,6 +83,7 @@ const popupEditItem = new PopupWithForm(popupEditSelector, (values) => {
   popupEditItem.showLoading(true);
   api.setUserInfo(values)
   .then((userInfo) => {
+    popupEditItem.closePopup();
     profile.setUserInfo(userInfo);
   })
   .catch((err) => {
@@ -88,9 +94,12 @@ const popupEditItem = new PopupWithForm(popupEditSelector, (values) => {
 
 const popupAvatarItem = new PopupWithForm(popupAvatarSelector, (values) => {
   popupAvatarItem.showLoading(true);
-  api.setAvatar(values)
+//  api.setAvatar(values)
+  api.setUserInfo(values)
   .then((userInfo) => {
-    profile.setAvatar(userInfo);
+    popupAvatarItem.closePopup();
+//    profile.setAvatar(userInfo);
+    profile.setUserInfo(userInfo);
   })
   .catch((err) => {
     console.log(err);
@@ -103,13 +112,12 @@ const profile = new UserInfo(profileData);
 
 /*ФУНКЦИИ*/
 /*Уверены?*/
-function openConfirm (item, card) {
+function openConfirm (card) {
   popupConfirmationItem.openPopup();
   popupConfirmationItem.setSubmit(() => {
-    api.deleteOwnersCard(item._id)
+    api.deleteOwnersCard(card.id)
       .then(() => {
-        card.remove();
-        card = null;
+        card.removeCard();
         popupConfirmationItem.closePopup();
       })          
       .catch((err) => {
@@ -118,34 +126,27 @@ function openConfirm (item, card) {
   })
 }
 
-/*likes*/
-function handelLike (item, card) {
-  if (card.querySelector('.cards__like').classList.contains('cards__like_state_active')) {
-    api.unlike(item._id)
+/*Like*/
+function handelLike (card) {
+  if (card.isLiked()) {
+    api.unlike(card.id)
     .then((item) => {
-      card.cardItem.updateCounter(item.likes.length);
+      card.updateCounter(item.likes.length);
+      card.likeCard();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  } else {
+    api.like(card.id)
+    .then((item) => {
+      card.updateCounter(item.likes.length);
+      card.likeCard();
     })
     .catch((err) => {
       console.log(err);
     });
-  } else {
-    api.like(item._id)
-      .then((item) => {
-        card.cardItem.updateCounter(item.likes.length);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
   }
-  card.querySelector('.cards__like').classList.toggle('cards__like_state_active');
-}
-
-/*Карточка*/
-function generateCard (data, cardTemplateSelector, handelView, openConfirm, handelLike){
-  const cardNew = new Card(data, cardTemplateSelector, handelView, openConfirm, handelLike);
-  const cardsElement = cardNew.createCard();
-  cardsElement.cardItem = cardNew;
-  return cardsElement;
 }
 
 /*Просмотр картинки*/
@@ -155,22 +156,18 @@ function handelView (link, place) {
 
 /*ДЕЙСТВИЯ*/
 /*Начальная информация*/
-api.getProfileInfo()
-  .then((userInfo) => {
-    profile.setUserInfo(userInfo);
-    profile.setAvatar(userInfo);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
-api.getInitialCards()
-  .then((cardsInfo) => {
-    cards.renderItems (cardsInfo);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+Promise.all([
+api.getProfileInfo(),
+api.getInitialCards()]) 
+.then(([userInfo, cardsInfo])=>{
+  profile.setUserInfo(userInfo);
+//  profile.setAvatar(userInfo);
+  cards.renderItems (cardsInfo);
+}) 
+.catch((err)=>{
+  console.log(err);
+});
 
 /*Валидация отправки формы*/
 formEditValidator.enableValidation();
@@ -185,8 +182,6 @@ popupAvatarItem.setEventListeners ();
 popupConfirmationItem.setEventListeners ();
 
 buttonEdit.addEventListener('click', function() {
-  const profileName = document.querySelector('.popup__input_type_name');
-  const profileJob = document.querySelector('.popup__input_type_job');
   const info = profile.getUserInfo();
   profile.setUserInfo(info);
   profileName.value = info.name;

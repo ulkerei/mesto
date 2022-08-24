@@ -1,12 +1,12 @@
 /*Карточки*/
 export default class Card {
-  constructor(data, templateSelector, handelView, openDeletePopup, handelLike) {
+  constructor(data, userId, templateSelector, handelView, openDeletePopup, handelLike) {
     this._place = data.place || data.name;
     this._link = data.link;
     this._likes = data.likes || [];
-    this._id = data._id;
+    this.id = data._id;
     this._owner = data.owner;
-    this._self = 'c1e8bf3d88660c8a2b4bf8a0';
+    this._self = userId;
     this._selector = templateSelector;
     this._template = document.querySelector(templateSelector).content;
     this._element = this._template.querySelector('.cards__element').cloneNode(true);
@@ -23,15 +23,25 @@ export default class Card {
     this._like.classList.toggle('cards__like_state_active');
   }
 
-  updateCounter (amount) {
-    this._counter.textContent = amount;
+  updateCounter (likes) {
+    this._counter.textContent = likes;
+  }
+
+  isLiked() {
+    return this._like.classList.contains('cards__like_state_active');
+  }
+
+  removeCard() {
+    this._element.remove();
+    this._element = null;
   }
 
   _setEventListeners() {
     this._view.addEventListener('click', () => this._handelView(this._place, this._link));
-    this._like.addEventListener('click', () => this._handelLike(this._id,this._element));
-    this._del.addEventListener('click', () => this._openDeletePopup(this._element));
+    this._like.addEventListener('click', () => this._handelLike(this));
+    this._del.addEventListener('click', () => this._openDeletePopup(this));
   }
+
 
   createCard () {
     this._view.src = this._link;
