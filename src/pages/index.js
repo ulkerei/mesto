@@ -51,9 +51,8 @@ const api = new Api({
 });
 
 const cards = new Section({
-  renderer:(item) => {
-    const cardInit = new Card (item, profile._id, cardTemplateSelector, () => handelView (item.name, item.link), openConfirm, handelLike);
-    cards.placeItem (cardInit.createCard(), true);
+  renderer:(info) => {
+    cards.placeItem(generateCard(info), true);
   }
 },cardsContainer);
 
@@ -69,8 +68,7 @@ const popupAddItem = new PopupWithForm(popupAddSelector, (values) => {
   popupAddItem.showLoading(true);
   api.postNewCard(values)
     .then((info) => {
-      const cardNew = new Card(info, profile._id, cardTemplateSelector, () => handelView (info.place, info.link), openConfirm , handelLike);
-      cards.placeItem(cardNew.createCard(), false);
+      cards.placeItem(generateCard(info), false);
       popupAddItem.closePopup();
     })
     .catch((err) => {
@@ -94,11 +92,9 @@ const popupEditItem = new PopupWithForm(popupEditSelector, (values) => {
 
 const popupAvatarItem = new PopupWithForm(popupAvatarSelector, (values) => {
   popupAvatarItem.showLoading(true);
-//  api.setAvatar(values)
   api.setUserInfo(values)
   .then((userInfo) => {
     popupAvatarItem.closePopup();
-//    profile.setAvatar(userInfo);
     profile.setUserInfo(userInfo);
   })
   .catch((err) => {
@@ -111,6 +107,12 @@ const popupAvatarItem = new PopupWithForm(popupAvatarSelector, (values) => {
 const profile = new UserInfo(profileData);
 
 /*ФУНКЦИИ*/
+/*Делаем карточку*/
+function generateCard(item) {
+  const cardCreated = new Card (item, profile.id, cardTemplateSelector, () => handelView (item.name, item.link), openConfirm, handelLike);
+  return cardCreated.createCard();
+}
+
 /*Уверены?*/
 function openConfirm (card) {
   popupConfirmationItem.openPopup();
@@ -162,7 +164,6 @@ api.getProfileInfo(),
 api.getInitialCards()]) 
 .then(([userInfo, cardsInfo])=>{
   profile.setUserInfo(userInfo);
-//  profile.setAvatar(userInfo);
   cards.renderItems (cardsInfo);
 }) 
 .catch((err)=>{

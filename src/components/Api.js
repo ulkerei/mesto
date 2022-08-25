@@ -39,18 +39,7 @@ export default class Api {
     })
     .then(res => this._check(res))
   }
-/*
-  setAvatar(values) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: 'PATCH',
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar: values.avatar
-      })
-    })
-    .then(res => this._check(res))
-  }
-*/
+
   postNewCard(values) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',

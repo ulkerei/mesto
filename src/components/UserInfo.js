@@ -8,7 +8,8 @@ export default class UserInfo {
   getUserInfo () {
     this._info = {
       name: this._name.textContent,
-      job: this._job.textContent
+      job: this._job.textContent,
+      avatar: this._avatar.style.backgroundImage
     }
     return this._info;
   }
@@ -16,11 +17,7 @@ export default class UserInfo {
   setUserInfo (newInfo) {
     this._name.textContent = newInfo.name;
     this._job.textContent = newInfo.job || newInfo.about;
-    this._id = newInfo._id;
+    this.id = newInfo._id;
     this._avatar.style.backgroundImage = `url(${newInfo.avatar})`;
   }
-
-/*  setAvatar (data) {
-    this._avatar.style.backgroundImage = `url(${data.avatar})`;
-  }*/
 }
